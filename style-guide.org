@@ -160,6 +160,30 @@
   void DeleteEntries(const uint idFirst, const uint idRange, Table *table);
   #+END_SRC
 
+
+  + Comment classes with headers ::
+  #+BEGIN_SRC c++
+  /*
+  ============================================================
+  
+      Class Name
+  
+  ============================================================
+  */
+  #+END_SRC
+  
+  + Similar for function and method headers
+  #+BEGIN_SRC c++
+  /*
+  ========================================
+  FunctionName
+  
+    Brief on functions purpose, no matter
+    how obvious it may seem.
+  ========================================
+  */
+  #+END_SRC
+
   + Additional Notes ::
 
   Avoid global variables wherever possible, unless they can be justified
