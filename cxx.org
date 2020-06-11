@@ -3,70 +3,17 @@
 #+TODO: PROPOSAL PROPOSED | ACCEPTED REJECTED
 
 
-* Foreword
-  Some of the content in this style code may seem like common sense to the
-  seasoned developer; yet as the project grows and the team with it, it is
-  important to have an established point of reference for company best-practices
-  and team procedures.
-
-  To have these ideas officially documented allows consistency in the code base,
-  while also implying certain goals and assumptions about development.
-
-  To have such a guide followed also allows tools to make these same
-  assumptions without greater efforts to allow outliers, such as shared editor
-  configurations, linters, documentation generators, etc.
-
-* Objectives
-  This style guide is written from analyzing the existing code base and
-  standardizing what the team has already become accustomed to. Consistency is
-  the most important principle to keep in mind. Requests for changes are
-  preferred to be pull requests for a modified style document.
-
-  + Design for the reader, not the writer ::
-    Developing a strong API means clean syntax, and an easy read.
-    Complex C++ syntax and advanced structures beyond the reasoning
-    of an average C++ programmer defeat the principle objective of an API,
-    to be shared.
-
-    Simplistic and less expressive syntax also allows for faster re-entry into
-    the code base. You understanding of the code today may differ drastically
-    after 3 months from now.
-
-  + Do not commit bugs ::
-    If your submission includes any undefined, unexpected, or otherwise
-    unintended behavior, even in fringe cases, do not commit. Fix it before
-    committing and moving on.
-
-    Code written on a faulty foundation means harder-to-track bugs
-
-* QSR
-
-  _Style is heavily based on LLVM style standard_
-
   + Use new-line braces everywhere (if, else, functions, structures, typedefs, classes, etc.) :: 
   #+BEGIN_SRC c++
   if (x) {
   }
   #+END_SRC
 
-  + ~else~ statements begin on a new line :: 
+  + ~else~ statements follow closing braces :: 
   #+BEGIN_SRC c++
   if (x) {
+  } else {
   }
-  else {
-  }
-  #+END_SRC
-
-  + Always specify types before every identifier names, do not use compound assignments ::
-  Do This
-  #+BEGIN_SRC c++
-  int x = 0;
-  int y = 0;
-  #+END_SRC
- 
-  Not This
-  #+BEGIN_SRC c++
-  int x, y = 0;
   #+END_SRC
 
   + All identifiers are in camelCase ::
@@ -137,20 +84,20 @@
   void RndrAnim(const Mesh *mesh, const Frame *frames);
   #+END_SRC
 
-  + Function overloading should be avoided, as it leads to reading obfuscations that outweigh the writer's conveniences ::
+  + Function overloading should have strong typing principles applied ::
 
   Instead of this
   #+BEGIN_SRC c++
-  Student db::QueryStudent(const uint pk);
+  Student db::QueryStudent(const int pk);
   Student db::QueryStudent(const String name);
-  Student db::QueryStudent(const UUID id);
+  Student db::QueryStudent(const long uuid);
   #+END_SRC
 
   Do this
   #+BEGIN_SRC c++
-  Student db::QueryStudentByKey(const uint pk);
-  Student db::QueryStudentByName(const String name);
-  Student db::QueryStudentByID(const UUID id);
+  Student db::QueryStudent(const PrimaryKey pk);
+  Student db::QueryStudent(const Name name);
+  Student db::QueryStudent(const UUID uuid);
   #+END_SRC
 
   + Everything is a constant, unless it can't be ::
