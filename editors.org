@@ -1,0 +1,45 @@
+#+TITLE: Common IDE / Editor Practices
+
+* Emacs
+
+  For those who choose to (and have the reasonable option) to
+  leverage emacs, the following is recommended:
+
+  - Use GNU Emacs
+     
+    This is due to the quality of support and elisp tooling available
+    to GNU emacs over clones (texmacs, XEmacs, jove, teco, etc.)
+
+  - Leverage a reasonable package management system that can provide
+    reproducable builds
+
+    Avoid monolithic configurations, and leverage use-package or
+    requires. Slit configs as reasonabily as you would manage your
+    projects codebase.
+
+  - If using spacemacs, utilize custom layers for your config
+
+    This allows for whole configurations to be modularly shared and
+    adapted.
+
+  - Use glasses-mode and configure for faces instead of separators
+
+    GlassesMode defaults to using an underscore separator, but this
+    can cause confusion where underscores may actually be employed,
+    its recommended to set glasses-separator to a blank string and
+    set glasses-face to "bold", these features are better documented
+    in the customize page of the "glasses" group.
+
+  - Utilize specialized workflows in babel, export with tangle
+
+    org-babel allows for converting org-documents into full-fledged
+    IDEs with special tooling features via. babel. Just be sure to
+    use org-tangle to export any modified code and embedded tools to
+    external files such that the babel-doc can be reproduced and
+    shared outside of your variant of emacs.
+
+  - Use speedbar + ctags
+
+    Speedbar makes navigation of complex structures holistically a
+    pain-free affair, and can increase reading efficiency for larger
+    files.
